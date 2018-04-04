@@ -40,7 +40,9 @@ padding: 80px;
   background-color: white;
 
 }
-
+.main-content{
+  padding: 10px 10px;
+}
 /* menu icon */
 
 .sidenav {
@@ -165,3 +167,4 @@ padding: 80px;
 .controls ul li.active {
   background:#6a6a77;;
 }
+
