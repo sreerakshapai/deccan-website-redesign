@@ -81,90 +81,164 @@ padding: 80px;
   margin-left: 50px;
 }
 /* vertical slider */
-.content-width {
-  width: 86%;
-  height: 100vh;
-  margin: 0 auto;
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
-
-.slideshow {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
 }
 
-.slideshow-items {
-  position: relative;
-  width: 100%;
-  height: 500px;
+.slides {
+  overflow: hidden;
+  width: 75vmin;
+  height: 100vmin;
 }
-
-.item {
+.slides li {
+  width: 75vmin;
+  height: 100vmin;
   position: absolute;
-  width: 100%;
-  height: auto;
-  color: white;
-}
-
-.item-image-container {
-  position: relative;
-  margin-left: 150px ;
-  width: 100%;
-}
-
-.item-image-container::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 101%;
-  height: 101%;
-  background: #22222A;
-  opacity: 0;
   z-index: 1;
 }
+.slides img {
+  height: 100vmin;
+  object-fit: cover;
+  object-position: top;
+}
+.slides li:target {
+  z-index: 3;
+  -webkit-animation: slide 1s 1;
+}
+.slides li:not(:target) {
+  -webkit-animation: hidden 1s 1;
+}
+@keyframes slide {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes hidden {
+  0% {
+    z-index: 2;
+  }
+  100% {
+    z-index: 2;
+  }
+}
 
-.item-image {
+/* index2 */
+.slideshow {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.slideshow .slider {
+  width: 100vw;
+  height: 100vw;
+  z-index: 2;
+}
+.slideshow .slider * {
+  outline: none;
+}
+.slideshow .slider .item {
+  height: 100vh;
+  width: 100vw;
   position: relative;
+  overflow: hidden;
+  border: none;
+}
+.slideshow .slider .item .text {
+  display: none;
+}
+.slideshow .slider .item img {
+  min-width: 101%;
+  min-height: 101%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.slideshow .slick-dots {
+  position: fixed;
+  z-index: 100;
+  width: 40px;
+  height: auto;
+  bottom: auto;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  left: auto;
+  color: #fff;
+  display: block;
+}
+.slideshow .slick-dots li {
+  display: block;
   width: 100%;
   height: auto;
-  opacity: 0;
-  display: block;
-  /* transition: property name | duration | timing-function | delay  */
-  transition: opacity .3s ease-out .45s;
 }
-
-.item.active .item-image {
+.slideshow .slick-dots li button {
+  position: relative;
+  width: 20px;
+  height: 15px;
+  text-align: center;
+}
+.slideshow .slick-dots li button:before {
+  content: '';
+  background: #fff;
+  color: #fff;
+  height: 2px;
+  width: 20px;
+  border-radius: 0;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: auto;
+  transform: translateY(-50%);
+  transition: all 0.3s ease-in-out;
+  opacity: 0.6;
+}
+.slideshow .slick-dots li.slick-active button:before {
+  width: 40px;
   opacity: 1;
 }
-
-.item.active .item-image-container::before {
-  opacity: .8;
+.slideshow.slideshow-right {
+  left: 0;
+  z-index: 1;
+  width: 50vw;
+  pointer-events: none;
 }
-/* Controls ----------------------------------------------------------------------*/
-.controls {
-  position: relative;
-  text-align: right;
-  z-index: 1000;
+.slideshow.slideshow-right .slider {
+  left: 0;
+  position: absolute;
 }
-
-.controls ul {
-  list-style: none;
+.slideshow-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  font-size: 80px;
+  width: 100vw;
+  text-align: center;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 100;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  line-height: 0.8;
 }
-
-.controls ul li {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 3px;
-  background:#bdbdd5;;
-  cursor: pointer;
+@media (max-width: 767px) {
+  .slideshow-text {
+    font-size: 40px;
+  }
 }
-
-.controls ul li.active {
-  background:#6a6a77;;
-}
-
