@@ -9,7 +9,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">
   <link rel="stylesheet" href="style.css">
+  
 </head>
 
 <body>
@@ -57,17 +60,33 @@
 
 
     </section>
-    <div class="container">
-      <ul class="slides">
-        <li id="slide1"><img src="https://images.unsplash.com/photo-1508768787810-6adc1f613514?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e27f6661df21ed17ab5355b28af8df4e&auto=format&fit=crop&w=1050&q=80"></li>
-        <li id="slide2"><img src="https://images.unsplash.com/photo-1516290881724-2230498ea247?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a8e018b51e43bd6b19e8b7126943d1a4&auto=format&fit=crop&w=1100&q=80"></li>
-        <li id="slide3"><img src="https://images.unsplash.com/photo-1516568760-88e3b6ed2653?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d9b84fc35b4f07af2cc0ddee631e2838&auto=format&fit=crop&w=701&q=80"></li>
-        <li id="slide4"><img src="https://images.unsplash.com/photo-1516757932457-9233f965b8d8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=37c8569c54b9e9ee05072839b91bd643&auto=format&fit=crop&w=1052&q=80"></li>
-        <li id="slide5"><img src="https://images.unsplash.com/photo-1515378040420-7d3f50e186e8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4b406aa520de6c2ebb6d52e896a66e53&auto=format&fit=crop&w=1050&q=80"></li>
-      </ul>
-    
-  
-    </div>
+
+    <div class="split-slideshow">
+        <div class="slideshow">
+          <div class="slider">
+            <div class="item">
+              <img src="https://images.unsplash.com/photo-1508768787810-6adc1f613514?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e27f6661df21ed17ab5355b28af8df4e&auto=format&fit=crop&w=1050&q=80" >
+            </div>
+            <div class="item">
+              <img src="https://images.unsplash.com/photo-1489269637500-aa0e75768394?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=91e7c041da2e767a6b2c8246eaa0d01c&auto=format&fit=crop&w=1025&q=80">
+            </div>
+            <div class="item">
+              <img src="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=dd7421500ebb37b5081ae17c3b77a8f4&auto=format&fit=crop&w=1650&q=80">
+            </div>
+            <div class="item">
+              <img src="https://images.unsplash.com/photo-1462212210333-335063b676bc?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d3238593d91c7c1b822a19b6071d7f2b&auto=format&fit=crop&w=1189&q=80">
+            </div>
+          </div>
+        </div>
+        <div class="slideshow-text">
+          <div class="item">Canyon</div>
+          <div class="item">Desert</div>
+          <div class="item">Erosion</div>
+          <div class="item">Shape</div>
+        </div>
+      </div>
+
+
    
   </main>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -76,6 +95,9 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.12/jquery.mousewheel.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
   <script>
     function openNav() {
       document.getElementById("mySidenav").style.width = "250px";
@@ -85,6 +107,87 @@
       document.getElementById("mySidenav").style.width = "0";
     }
   </script>
+<script>
+var $slider = $('.slideshow .slider'),
+  maxItems = $('.item', $slider).length,
+  dragging = false,
+  tracking,
+  rightTracking;
+
+$sliderRight = $('.slideshow').clone().addClass('slideshow-right').appendTo($('.split-slideshow'));
+
+rightItems = $('.item', $sliderRight).toArray();
+reverseItems = rightItems.reverse();
+$('.slider', $sliderRight).html('');
+for (i = 0; i < maxItems; i++) {
+  $(reverseItems[i]).appendTo($('.slider', $sliderRight));
+}
+
+$slider.addClass('slideshow-left');
+$('.slideshow-left').slick({
+  vertical: true,
+  verticalSwiping: true,
+  arrows: false,
+  infinite: true,
+  dots: true,
+  speed: 1000,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)'
+}).on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+
+  if (currentSlide > nextSlide && nextSlide == 0 && currentSlide == maxItems - 1) {
+    $('.slideshow-right .slider').slick('slickGoTo', -1);
+    $('.slideshow-text').slick('slickGoTo', maxItems);
+  } else if (currentSlide < nextSlide && currentSlide == 0 && nextSlide == maxItems - 1) {
+    $('.slideshow-right .slider').slick('slickGoTo', maxItems);
+    $('.slideshow-text').slick('slickGoTo', -1);
+  } else {
+    $('.slideshow-right .slider').slick('slickGoTo', maxItems - 1 - nextSlide);
+    $('.slideshow-text').slick('slickGoTo', nextSlide);
+  }
+}).on("mousewheel", function(event) {
+  event.preventDefault();
+  if (event.deltaX > 0 || event.deltaY < 0) {
+    $(this).slick('slickNext');
+  } else if (event.deltaX < 0 || event.deltaY > 0) {
+    $(this).slick('slickPrev');
+  };
+}).on('mousedown touchstart', function(){
+  dragging = true;
+  tracking = $('.slick-track', $slider).css('transform');
+  tracking = parseInt(tracking.split(',')[5]);
+  rightTracking = $('.slideshow-right .slick-track').css('transform');
+  rightTracking = parseInt(rightTracking.split(',')[5]);
+}).on('mousemove touchmove', function(){
+  if (dragging) {
+    newTracking = $('.slideshow-left .slick-track').css('transform');
+    newTracking = parseInt(newTracking.split(',')[5]);
+    diffTracking = newTracking - tracking;
+    $('.slideshow-right .slick-track').css({'transform': 'matrix(1, 0, 0, 1, 0, ' + (rightTracking - diffTracking) + ')'});
+  }
+}).on('mouseleave touchend mouseup', function(){
+  dragging = false;
+});
+
+$('.slideshow-right .slider').slick({
+  swipe: false,
+  vertical: true,
+  arrows: false,
+  infinite: true,
+  speed: 950,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+  initialSlide: maxItems - 1
+});
+$('.slideshow-text').slick({
+  swipe: false,
+  vertical: true,
+  arrows: false,
+  infinite: true,
+  speed: 900,
+  cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)'
+});
+
+
+</script>
 
 </body>
 
